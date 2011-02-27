@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<bindings id="LookpickBindings"
+      xmlns="http://www.mozilla.org/xbl"
+      xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      xmlns:xbl="http://www.mozilla.org/xbl">
+  <binding id="lookpick_textbox"
+      extends="chrome://global/content/bindings/autocomplete.xml#autocomplete" xbl:inherits="inputField">
+    <handlers>
+      <handler event="dragdrop" phase="capturing">
+        nsDragAndDrop.drop(event, textfield_drop_observer);
+      </handler>
+    </handlers>
+  </binding>
+  
+  <binding id="findbar_extension"
+      extends="chrome://global/content/bindings/findbar.xml#findbar">
+	<implementation>
+		<property name="query_text">
+			<getter>
+				return document.getAnonymousElementByAttribute(this, "anonid", "findbar-textbox");
+			</getter>
+			<setter>
+				document.getAnonymousElementByAttribute(this, "anonid", "findbar-textbox").value = val;
+			</setter>
+		</property>
+	</implementation>
+  </binding>
+</bindings>

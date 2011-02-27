@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<RDF:RDF xmlns:em="http://www.mozilla.org/2004/em-rdf#"
+         xmlns:NC="http://home.netscape.com/NC-rdf#"
+         xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <RDF:Description RDF:about="rdf:#$Sf+XA2"
+                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+                   em:minVersion="3.0b4"
+                   em:maxVersion="4.0.*" />
+  <RDF:Description RDF:about="urn:mozilla:install-manifest"
+                   em:id="{c53d8e21-537c-4795-b8ec-9639dbcf3cbe}">
+
+	<em:name>Lookpick</em:name>
+	<em:version>0.4</em:version>
+	<em:description>Personal server-based search box. Use hundreds of search engines instantly. Create and share them at lookpicking.com.</em:description>
+	<em:homepageURL>http://lookpicking.com</em:homepageURL>
+	<em:creator>Johannes Stein</em:creator>
+	<em:contributor>Gavin Sharp (original code)</em:contributor>
+	<em:contributor>Malte Kraus</em:contributor>
+	<em:iconURL>chrome://lookpick/skin/icon32.png</em:iconURL>
+	<em:homepageURL>http://lookpicking.com</em:homepageURL>
+	<em:targetApplication RDF:resource="rdf:#$Sf+XA2"/>
+  </RDF:Description>
+</RDF:RDF>

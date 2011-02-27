@@ -1,0 +1,520 @@
+/* ***** BEGIN LICENSE BLOCK *****
+ * Version: MPL 1.1/GPL 2.0/LGPL 2.1
+ *
+ * The contents of this file are subject to the Mozilla Public License Version
+ * 1.1 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ * http://www.mozilla.org/MPL/
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+ * for the specific language governing rights and limitations under the
+ * License.
+ *
+ * The Original Code is Firefox.
+ *
+ * The Initial Developer of the Original Code is
+ * Johannes Stein.
+ * Portions created by the Initial Developer are Copyright (C) 2006
+ * the Initial Developer. All Rights Reserved.
+ *
+ * Contributor(s):
+ *   Gavin Sharp <gavin@gavinsharp.com> (Original author)
+ *   Johannes Stein <johannes@unsyn.com>
+ *
+ * Alternatively, the contents of this file may be used under the terms of
+ * either the GNU General Public License Version 2 or later (the "GPL"), or
+ * the GNU Lesser General Public License Version 2.1 or later (the "LGPL"),
+ * in which case the provisions of the GPL or the LGPL are applicable instead
+ * of those above. If you wish to allow use of your version of this file only
+ * under the terms of either the GPL or the LGPL, and not to allow others to
+ * use your version of this file under the terms of the MPL, indicate your
+ * decision by deleting the provisions above and replace them with the notice
+ * and other provisions required by the GPL or the LGPL. If you do not delete
+ * the provisions above, a recipient may use your version of this file under
+ * the terms of any one of the MPL, the GPL or the LGPL.
+ *
+ * ***** END LICENSE BLOCK ***** */
+
+#searchbar
+{
+	padding:0;
+	margin:0;
+}
+.lookpick-box
+{
+	height:22px !important;
+	margin-left:4px;
+	margin-right:4px;
+}
+.mac .lookpick-box
+{
+	height:26px !important;
+	margin-left:49px;
+	margin-right:0px;
+	margin-top:-4px !important;
+	margin-bottom:2px !important;
+	padding-top:4px !important;
+	padding-bottom:0px !important;
+}
+.lookpick-box .searchbar-lp-textbox {
+  margin-right: 0px;
+  margin-left: 0px;
+  -moz-appearance: none;
+  border-width: 1px;
+  border-right-width: 0px;
+  padding-left: 3px;
+  padding-right: 3px;
+  -moz-border-top-colors: ThreeDShadow !important;
+  -moz-border-bottom-colors: ThreeDShadow !important;
+  -moz-border-left-colors: ThreeDShadow !important;
+  font-style: italic;
+  -moz-border-radius: 0 !important;
+}
+.mac .lookpick-box .searchbar-lp-textbox {
+  -moz-appearance: none;
+  font: icon;
+  /*height: 10px;*/
+  /*width: 5em;*/
+  /*-moz-margin-start: 5px;*/
+  min-width: 5em;
+  border: none;
+  background-color: transparent !important;
+  border-width:0px !important;
+  background: url("textfield-mid.png") repeat-x;
+  background-position: 0px 2px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+  margin-top: -1px !important;
+}
+
+/*for the textfield*/
+.lookpick-box .step1
+{
+  background-color: #FFECDF !important;	
+  color: #000000 !important;
+}
+.mac .lookpick-box .step1
+{
+  background-color: transparent !important;
+  background: url(textfield-mid-red.png) repeat-x;
+}
+
+.lookpick-box .step1-inner
+{
+  background-color: #FFECDF !important;	
+  color: #000000 !important;
+  border-width:0;
+}
+.mac .lookpick-box .step1-inner
+{
+  background-color: transparent !important;	
+  margin-left:-3px !important;
+}
+
+.lookpick-box .step2
+{
+  background-color: #EBF3E4 !important;	
+  color: #000000 !important;
+}
+.mac .lookpick-box .step2
+{
+  background-color: transparent !important;
+  background: url(textfield-mid-green.png) repeat-x;
+}
+.lookpick-box .step2-inner
+{
+  background-color: #EBF3E4 !important;	
+  color: #000000 !important;
+  border-width:0;
+}
+.mac .lookpick-box .step2-inner
+{
+  background-color: transparent !important;	
+  margin-left:-3px !important;
+}
+
+.lookpick-box .inactive
+{
+  background-color: #FFFFFF !important;
+  color: graytext !important;
+}
+.mac .lookpick-box .inactive
+{
+  background-color: transparent !important;
+  background: url(textfield-mid.png) repeat-x;
+}
+.lookpick-box .inactive-inner
+{
+  background-color: #FFFFFF !important;
+  color: graytext !important;
+  border-width:0;
+  font-style:italic !important;
+}
+.mac .lookpick-box .inactive-inner
+{
+  background-color: transparent !important;
+  font: icon !important;
+  color: graytext !important;
+  margin-left:-3px !important;
+}
+
+.lookpick-box .blinking
+{
+  background-color: #FFFF99 !important;
+  color: graytext !important;
+}
+.mac .lookpick-box .blinking
+{
+  background-color: transparent !important;
+  background: url(textfield-mid-yellow.png) repeat-x;
+}
+.lookpick-box .blinking-inner
+{
+  background-color: #FFFF99 !important;
+  color: graytext !important;
+  border-width:0;
+  font-style:italic !important;
+  font: icon !important;
+  color: graytext !important;
+  
+}
+.mac .lookpick-box .blinking-inner
+{
+  background-color: transparent !important;
+  margin-left:-3px !important;
+}
+
+/*.lookpick-box .searchbar-engine-image {
+  list-style-image: url("chrome://browser/skin/Search-bar.png");
+}*/
+
+
+.lookpick-box #lookpick-selector-button
+{
+  min-height: 20px;
+  height: 20px;
+  /*width: 1.7em;
+  min-width: 1.7em;*/
+  margin-right: 0px;
+  margin-left: 0px;
+  margin-top:2px;
+  margin-bottom:2px;
+  border-width: 1px !important;
+  border-right-width: 0px !important;
+  -moz-border-top-colors: ThreeDShadow;
+  -moz-border-bottom-colors: ThreeDShadow;
+  -moz-border-left-colors: ThreeDShadow;
+}
+.mac .lookpick-box #lookpick-selector-button
+{
+  background: url("startcap.png") center center no-repeat;
+  -moz-appearance: none;
+  height: 16px;
+  min-width: 44px;
+  border: 0;
+  -moz-box-align: center;
+  margin: 0;
+  -moz-margin-start: -44px;
+  padding: 0;
+}
+.linux .lookpick-box #lookpick-selector-button
+{
+  width:34px;
+}
+
+
+.lookpick-box button.selector_button
+{
+  -moz-appearance: none;
+  min-width: 0;
+  margin: 0;
+  -moz-margin-end: 3px;
+  padding: 0;
+  /*height: 1.23em;
+  min-height: 20px;*/
+  -moz-box-align: center;
+  background: -moz-dialog url(navbar-textbox-buttons.png) repeat-x;
+  border: 0 solid;
+  border-right-width: 1px;
+  -moz-border-right-colors: ThreeDShadow;
+  background-color:#FFFFFF;
+  margin-right:-2px !important;
+}
+.mac .lookpick-box button.selector_button
+{
+  border-right-width: 0px;
+  background-color:#FFFFFF;
+  margin-right:0px !important;
+  margin-top:1px !important;
+}
+
+#searchbar_orig .searchbar-engine-button[addengines="true"] > .button-box {
+  background: transparent url(chrome://browser/skin/Search-addengines.png) no-repeat right center;
+}
+
+#searchbar .selector_button[addengines="true"] > .button-box {
+  background: transparent url(chrome://browser/skin/Search-addengines.png) no-repeat right center;
+}
+.mac .lookpick-box button.selector_button[addengines="true"] > .button-box {
+  background: transparent url(chrome://browser/skin/Search-addengines.png) no-repeat 25px center !important;
+}
+
+.lookpick-engine-image {
+  height: 16px;
+  width: 16px;
+  margin:-1px;
+}
+.mac .lookpick-engine-image {
+  background-position: 3px 0px;
+  background-color: transparent !important;
+}
+
+.lookpick-dropmarker-image {
+  list-style-image: url("chrome://global/skin/arrow/arrow-dn.gif");
+  margin-top:1px;
+  -moz-margin-start: 3px;
+}
+.mac .lookpick-dropmarker-image {
+  list-style-image: url("chrome://global/skin/arrow/arrow-dn.png");
+  -moz-margin-start: 2px !important;
+  margin-top:0px !important;
+}
+
+/*needed for resizing menu icons*/
+#standard-search-menuitem .menu-iconic-icon {
+	width: 10px;
+	height: 10px;
+}
+
+/*the button used for menu etc*/
+.lookpick-box #lookpick-button
+{
+  margin-top:2px;
+  margin-bottom:2px;
+  background-color: #FFFFFF;
+  -moz-appearance: none;
+  border-top-width: 1px !important;
+  border-bottom-width: 1px !important;
+  border-left-width: 0px !important;
+  border-right-width: 0px !important;
+  background-repeat: no-repeat;
+  -moz-border-top-colors: ThreeDShadow !important;
+  -moz-border-bottom-colors: ThreeDShadow !important;
+}
+.mac .lookpick-box #lookpick-button
+{
+  border-top-width: 0px !important;
+  border-bottom-width: 0px !important;
+ /* background: url("chrome://browser/skin/urlbar/textfield-mid.png") repeat-x;
+  background-position: 0px -2px !important;*/
+  padding: 0 !important;
+  margin: 0 !important;
+  margin-top:-1px !important;
+  margin-bottom:0px !important;
+}
+
+.mac .lookpick-box #lookpick-button-border
+{
+  border-top-width: 0px !important;
+  border-bottom-width: 0px !important;
+  background: url("textfield-mid.png") repeat-x;
+  background-position: 0px -1px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  margin-top:2px !important;
+  margin-bottom:0px !important;
+  height:26px !important;
+}
+
+.lookpick-box .button_help
+{
+  width:18px;
+  background-image: url(help.png);
+  background-position: 1px 4px;
+}
+.mac .lookpick-box .button_help
+{
+  width:18px;
+  background-image: url(help.png);
+  background-position: 1px 9px !important;
+  /*background-color: #FFEEEE !important;*/
+  background-color: transparent !important;
+}
+
+.lookpick-box .button_clear
+{
+  width:18px;
+  background-image: url(clear.png);
+  background-position: 1px 5px;
+  background-color: #FFECDF !important;
+}
+.mac .lookpick-box .button_clear
+{
+  background-color: transparent !important;
+  background-position: 1px 10px !important;
+}
+.lookpick-box .button_pending
+{
+  width:18px;
+  background-image: url(loading.gif);
+  background-position: 0px 2px;
+  background-color: #FFECDF;
+}
+.mac .lookpick-box .button_pending
+{
+  background-color: transparent !important;
+  background-position: 0px 7px !important;
+}
+.lookpick-box .button_pending_green
+{  
+  width:18px;
+  background-image: url(loading.gif);
+  background-position: 0px 2px;
+}
+.mac .lookpick-box .button_pending_green
+{
+  background-color: transparent !important;
+  background-position: 0px 7px !important;
+}
+
+.lookpick-box .button_back
+{
+  width:18px;
+  background-color: #EBF3E4;
+  background-image: url(back.png);
+  background-position: 2px 5px;
+}
+.mac .lookpick-box .button_back
+{
+  background-color: transparent !important;
+  background-position: 2px 10px !important;
+}
+
+.lookpick-box .search-go-button
+{
+	background-color: #FFFFFF;
+	border-width: 1px !important;
+	border-right-width: 0px !important;
+	-moz-border-top-colors: ThreeDShadow;
+  	-moz-border-bottom-colors: ThreeDShadow;
+  	-moz-border-left-colors: ThreeDShadow;
+	margin:1px;
+	margin-left:0px;
+	height:22px;
+}
+.mac .lookpick-box .search-go-button
+{
+	background-color: transparent !important;
+	border-width: 0px !important;
+	border-right-width: 0px !important;
+	height:15px;
+	
+  list-style-image: url("chrome://browser/skin/Search.png");
+  margin: 0 !important;
+  padding: 0 !important;
+  padding-left: 1px !important;
+  padding-top: 1px !important;
+}
+.linux .lookpick-box .search-go-button
+{
+	height:22px;
+	padding-top:3px;
+	padding-bottom:3px;
+	padding-right:2px;
+}
+
+.lookpick-box .search-go-container
+{
+	background-color: ThreeDShadow;
+	margin-top:2px;
+	margin-bottom:2px;
+}
+.mac .lookpick-box .search-go-container
+{
+	width:30px !important;
+	background-color: transparent !important;
+	margin-top:0px;
+	margin-bottom:0px;
+  -moz-box-align: center;
+  background: url(endcap.png) no-repeat;
+  background-position: 0px 1px !important;
+}
+
+.mac .lookpick-box .search-green
+{
+  background: url(endcap-green.png) no-repeat !important;
+  background-position: 0px 2px !important;
+}
+.mac .lookpick-box .search-red
+{
+  background: url(endcap-red.png) no-repeat !important;
+  background-position: 0px 1px !important;
+}
+.mac .lookpick-box .search-white
+{
+  background: url(endcap.png) no-repeat !important;
+  background-position: 0px 1px !important;
+}
+.mac .lookpick-box .search-yellow
+{
+  background: url(endcap-yellow.png) no-repeat !important;
+  background-position: 0px 1px !important;
+}
+
+.mac .lookpick-box .selector-green
+{
+  background: url(startcap-green.png) no-repeat !important;
+  background-position: 0px 1px !important;
+}
+.mac .lookpick-box .selector-red
+{
+  background: url(startcap-red.png) no-repeat !important;
+  background-position: 0px 1px !important;
+}
+.mac .lookpick-box .selector-white
+{
+  background: url(startcap.png) no-repeat !important;
+  background-position: 0px 1px !important;
+}
+.mac .lookpick-box .selector-yellow
+{
+  background: url(startcap-yellow.png) no-repeat !important;
+  background-position: 0px 1px !important;
+}
+
+.mac .lookpick-box .selector-green[addengines="true"] > .button-box, .mac .lookpick-box .selector-red[addengines="true"] > .button-box, .mac .lookpick-box .selector-white[addengines="true"] > .button-box, .mac .lookpick-box .selector-yellow[addengines="true"] > .button-box
+{
+	background: transparent url(chrome://browser/skin/Search-addengines.png) no-repeat 25px center !important;
+} 
+
+.mac .lookpick-box .button-border-green
+{
+  background: url(textfield-mid-green.png) repeat-x !important;
+  background-position: 0px 0px !important;
+}
+.mac .lookpick-box .button-border-red
+{
+  background: url(textfield-mid-red.png) repeat-x !important;
+  background-position: 0px -2px !important;
+}
+.mac .lookpick-box .button-border-white
+{
+  background: url(textfield-mid.png) repeat-x !important;
+  background-position: 0px -2px !important;
+}
+.mac .lookpick-box .button-border-yellow
+{
+  background: url(textfield-mid-yellow.png) repeat-x !important;
+  background-position: 0px -2px !important;
+}
+
+/*used so far for validation errors on textfields*/
+.validation_error
+{
+  background-color: #FFECDF !important;
+}

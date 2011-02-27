@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<!-- ***** BEGIN LICENSE BLOCK *****
+	
+	Version: MPL 1.1/GPL 2.0/LGPL 2.1
+	
+	The contents of this file are subject to the Mozilla Public License Version
+	1.1 (the "License"); you may not use this file except in compliance with
+	the License. You may obtain a copy of the License at
+	http://www.mozilla.org/MPL/
+	
+	Software distributed under the License is distributed on an "AS IS" basis,
+	WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+	for the specific language governing rights and limitations under the
+	License.
+	
+	The Original Code is Firefox.
+	
+	The Initial Developer of the Original Code is
+	Gavin Sharp.
+	Portions created by the Initial Developer are Copyright (C) 2006
+	the Initial Developer. All Rights Reserved.
+	
+	Contributor(s):
+	Gavin Sharp <gavin@gavinsharp.com> (Original author)
+	Malte Kraus <mails@maltekraus.de>
+	Johannes Stein <johannes@unsyn.com>
+	
+	Alternatively, the contents of this file may be used under the terms of
+	either the GNU General Public License Version 2 or later (the "GPL"), or
+	the GNU Lesser General Public License Version 2.1 or later (the "LGPL"),
+	in which case the provisions of the GPL or the LGPL are applicable instead
+	of those above. If you wish to allow use of your version of this file only
+	under the terms of either the GPL or the LGPL, and not to allow others to
+	use your version of this file under the terms of the MPL, indicate your
+	decision by deleting the provisions above and replace them with the notice
+	and other provisions required by the GPL or the LGPL. If you do not delete
+	the provisions above, a recipient may use your version of this file under
+	the terms of any one of the MPL, the GPL or the LGPL.
+	***** END LICENSE BLOCK ***** -->
+<?xml-stylesheet href="chrome://lookpick/skin/lookpick.css" type="text/css"?>
+<?xml-stylesheet href="chrome://browser/skin/searchbar.css" type="text/css"?>
+<!DOCTYPE overlay [
+  <!ENTITY % extDTD SYSTEM "chrome://lookpick/locale/browser.dtd">
+  %extDTD;
+    <!ENTITY % globalDTD SYSTEM "chrome://global/locale/global.dtd">
+      %globalDTD;
+      ]>
+<overlay id="lookpickOverlay"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<script src="chrome://global/content/nsDragAndDrop.js"/>
+	<script src="chrome://global/content/nsTransferable.js"/>
+	<script type="application/x-javascript"
+		src="chrome://lookpick/content/lookpick.js"></script>
+	<!-- The main searchbar container that holds the original search bar and the lookpick -->
+	<toolbaritem id="search-container">
+		<searchbar id="searchbar" removeelement="true" /><!--removes the search field-->
+		<deck selectedIndex="0" id="searchbar" flex="1">
+			<hbox class="lookpick-box" flex="1">
+				<button class="selector_button" type="menu" 
+					anonid="searchbar-engine-button" id="lookpick-selector-button"
+					popup="searchbar-popup" chromedir="&locale.dir;" onfocus="document.getElementById('searchbar-lp').focus();">
+					<image class="lookpick-engine-image" id="lookpick-engine-image" src="chrome://lookpick/skin/lp-icon.png" />
+					<image class="lookpick-dropmarker-image" />
+				</button>
+				<menupopup id="searchbar-popup" class="searchbar-popup"
+					anonid="searchbar-popup" position="after_start" onpopupshowing="Lookpick.rebuild_selector_popup();">
+					<menuitem label="lookpick"
+						style="font-weight:bold;" image="chrome://lookpick/skin/lp-icon.png" class="menuitem-iconic" oncommand="Lookpick.revert_textfield();" />
+					<menuitem label="Standard Search Box" id="standard-search-menuitem"
+						oncommand="Lookpick.bring_up_original();" image="chrome://lookpick/skin/back.png" class="menuitem-iconic" />
+					<menuitem id="placeholder_end" hidden="true" />
+				</menupopup>
+				<!-- The text field -->
+				<hbox flex="1">
+					<textbox id="searchbar-lp"
+						anonid="searchbar-textbox"
+						style="-moz-binding: url('chrome://lookpick/content/lookpick.xml#lookpick_textbox');"
+						class="searchbar-lp-textbox inactive" type="autocomplete"
+						autocompletesearch="simple-autocomplete"
+						autocompletesearchparam="[{value:'foo'},{value:'bar'}]"
+						forcecomplete="true" completeselectedindex="true"
+						completedefaultindex="true" tabscrolling="true"
+						inputtooltiptext="choose a lookpick" label="lookpicking"
+						value="choose a lookpick"
+						onclick="Lookpick.handle_textfield_click(this);"
+						onblur="Lookpick.handle_textfield_blur(this);"
+						ontextentered="Lookpick.handle_textfield_submit(this);"
+						ontextreverted="Lookpick.revert_textfield();"
+						onfocus="Lookpick.handle_textfield_focus(this);this.style.color='rgb(0,0,0)';this.style.fontStyle='normal'"
+						onkeydown="Lookpick.handle_textfield_keydown(event.altKey, event.ctrlKey)"
+						onkeyup="Lookpick.handle_textfield_input_wrapper(event.altKey, event.ctrlKey, this);"
+						onmouseover="Lookpick.handle_textfield_mouseover(this);"
+						onmouseout="Lookpick.handle_textfield_mouseout(this);"
+						ondragenter="nsDragAndDrop.dragEnter(event, textfield_drop_observer);"
+						ondragexit="nsDragAndDrop.dragExit(event, textfield_drop_observer);"
+						flex="1">
+					</textbox>
+				</hbox>
+
+				<!-- The lookpick-button, to the right of the search field, but left from the go-button -->
+				<!-- hbox align="center"-->
+					<stack>
+						<box id='lookpick-button-border' />
+						<toolbarbutton id="lookpick-button"
+							class="button_help" tooltiptext="help"
+							onclick="Lookpick.handle_button_onclick();" />
+					</stack>
+				<!--/hbox-->
+
+				<!-- The original go-button -->
+				<hbox class="search-go-container"
+					chromedir="&locale.dir;" id="search-go-container">
+					<image class="search-go-button"
+						id="search-go-button" anonid="search-go-button"
+						chromedir="&locale.dir;"
+						onclick="Lookpick.handle_submit_button_click(event, document.getElementById('searchbar-lp'))"
+						tooltiptext="Search" />
+				</hbox>
+			</hbox>
+			<searchbar id="searchbar-orig" flex="1"
+				chromedir="&locale.dir;" />
+		</deck>
+	</toolbaritem>
+
+	<!-- Add 'Lookpick this...' item to the context menu -->
+	<popup id="contentAreaContextMenu">
+		<menuitem id="context-searchfield" label="Lookpick this..."
+			oncommand="Lookpick.addEngineToSearchBar();"
+			insertafter="context-keywordfield" />
+	</popup>
+	
+	<!-- Context menu for the lookpick-button -->
+	<popupset>
+		<popup id="lookpick-menu">
+			<menuitem label="help"
+				oncommand="Lookpick.show_help();" />
+			<menuitem id="login-or-home" label="log in"
+				oncommand="Lookpick.show_login_dialog_or_homepage();" />
+			<menuitem id="my-newest-picks" label="my newest picks"
+				oncommand="Lookpick.go_to_latest_lookpicks();" hidden="true" />
+			<menuitem label="check for updates"
+				oncommand="Lookpick.check_for_lookpick_updates();" />
+		</popup>
+	</popupset>
+	
+	<findbar_extension browserid="content" id="FindToolbar" style="-moz-binding: url('chrome://lookpick/content/lookpick.xml#findbar_extension');"/>
+</overlay>
